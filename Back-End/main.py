@@ -1,156 +1,207 @@
 import datetime
 
-class Usuario:
-    def __init__(self, nome, email, senha):
-        self.nome = nome
-        self.email = email
-        self.senha = senha
-        self.pontos = 0
-        self.nivel = 1
-        self.objetivos = []
-
-class Objetivo:
-    def __init__(self, titulo, descricao, data_fim):
-        self.titulo = titulo
-        self.descricao = descricao
-        self.data_inicio = datetime.date.today()
-        self.data_fim = data_fim
-        self.metas = []
-        self.status = "Ativo"
-
-class Meta:
-    def __init__(self, descricao, meta_atingida):
-        self.descricao = descricao
-        self.progresso_atual = 0.0
-        self.meta_atingida = meta_atingida
-        self.concluida = False
-
-usuarios = []
+usuarios = {}
+objetivos = {}
+metas = {}
 usuario_logado = None
 
 def cadastrar_usuario():
-    nome = input("Nome de usuário: ")
-    email = input("Email: ")
-    senha = input("Senha: ")
-    usuarios.append(Usuario(nome, email, senha))
-    print("Usuário cadastrado com sucesso!\n")
+    print("=== Cadastro ===")
+    nome = input("Nome: ").strip()
+    email = input("Email: ").strip()
+    senha = input("Senha: ").strip()
+    if email in usuarios:
+        print("Email já cadastrado.")
+        return
+    usuarios[email] = {
+        'nome': nome,
+        'email': email,
+        'senha': senha,
+        'data_registro': datetime.datetime.now(),
+        'pontos_total': 0
+    }
+    print(f"Usuário {nome} cadastrado com sucesso!")
 
 def login():
     global usuario_logado
-    email = input("Email: ")
-    senha = input("Senha: ")
-    for u in usuarios:
-        if u.email == email and u.senha == senha:
-            usuario_logado = u
-            print(f"Bem-vindo(a), {u.nome}!\n")
-            return
-    print("Email ou senha incorretos.\n")
+    print("=== Login ===")
+    email = input("Email: ").strip()
+    senha = input("Senha: ").strip()
+    user = usuarios.get(email)
+    if not user or user['senha'] != senha:
+        print("Usuário ou senha inválidos.")
+        return
+    usuario_logado = email
+    print(f"Bem-vindo(a), {user['nome']}!")
 
 def criar_objetivo():
-    if not usuario_logado:
-        print("Faça login primeiro.\n")
+    global objetivos
+    if usuario_logado is None:
+        print("Faça login primeiro.")
         return
-    titulo = input("Título do objetivo: ")
-    descricao = input("Descrição: ")
-    data_fim = input("Data de conclusão (YYYY-MM-DD): ")
-    objetivo = Objetivo(titulo, descricao, datetime.datetime.strptime(data_fim, "%Y-%m-%d").date())
-    usuario_logado.objetivos.append(objetivo)
-    print("Objetivo criado com sucesso!\n")
+    print("=== Criar Objetivo ===")
+    titulo = input("Título do objetivo: ").strip()
+    descricao = input("Descrição: ").strip()
+    data_inicio = datetime.date.today()
+    status = 'Ativo'
+    id_obj = len(objetivos) + 1
+    objetivos[id_obj] = {
+        'id_usuario': usuario_logado,
+        'titulo_objetivo': titulo,
+        'descricao': descricao,
+        'data_inicio': data_inicio,
+        'status': status,
+        'metas': []
+    }
+    print(f"Objetivo '{titulo}' criado com sucesso!")
 
 def listar_objetivos():
-    if not usuario_logado or not usuario_logado.objetivos:
-        print("Nenhum objetivo encontrado.\n")
+    if usuario_logado is None:
+        print("Faça login primeiro.")
         return
-    for i, obj in enumerate(usuario_logado.objetivos):
-        print(f"[{i}] {obj.titulo} - Status: {obj.status}")
-    print()
+    print("=== Seus Objetivos ===")
+    tem_obj = False
+    for id_obj, obj in objetivos.items():
+        if obj['id_usuario'] == usuario_logado:
+            tem_obj = True
+            print(f"ID {id_obj} | {obj['titulo_objetivo']} - {obj['status']}")
+    if not tem_obj:
+        print("Nenhum objetivo cadastrado.")
 
 def criar_meta():
-    if not usuario_logado:
-        print("Faça login primeiro.\n")
+    if usuario_logado is None:
+        print("Faça login primeiro.")
         return
     listar_objetivos()
-    idx = int(input("Selecione o objetivo pelo número: "))
-    if idx < 0 or idx >= len(usuario_logado.objetivos):
-        print("Objetivo inválido.\n")
+    try:
+        id_obj = int(input("Digite o ID do objetivo para adicionar meta: "))
+        if id_obj not in objetivos or objetivos[id_obj]['id_usuario'] != usuario_logado:
+            print("Objetivo inválido.")
+            return
+    except:
+        print("ID inválido.")
         return
-    descricao = input("Descrição da meta: ")
-    meta_atingida = float(input("Meta a atingir (número): "))
-    meta = Meta(descricao, meta_atingida)
-    usuario_logado.objetivos[idx].metas.append(meta)
-    print("Meta adicionada com sucesso!\n")
+    descricao_meta = input("Descrição da meta: ").strip()
+    progresso_atual = 0.0
+    meta_atingida = float(input("Meta a ser atingida (ex: 100): "))
+    unidade_medida = input("Unidade de medida (ex: horas, páginas): ").strip()
+    concluida = False
+    id_meta = len(metas) + 1
+    metas[id_meta] = {
+        'id_objetivo': id_obj,
+        'descricao_meta': descricao_meta,
+        'progresso_atual': progresso_atual,
+        'meta_atingida': meta_atingida,
+        'unidade_medida': unidade_medida,
+        'concluida': concluida
+    }
+    objetivos[id_obj]['metas'].append(id_meta)
+    print(f"Meta adicionada ao objetivo '{objetivos[id_obj]['titulo_objetivo']}' com sucesso!")
 
-def atualizar_progresso():
-    if not usuario_logado:
-        print("Faça login primeiro.\n")
+def listar_metas():
+    if usuario_logado is None:
+        print("Faça login primeiro.")
         return
     listar_objetivos()
-    idx_obj = int(input("Selecione o objetivo: "))
-    if idx_obj < 0 or idx_obj >= len(usuario_logado.objetivos):
-        print("Objetivo inválido.\n")
+    try:
+        id_obj = int(input("Digite o ID do objetivo para listar metas: "))
+        if id_obj not in objetivos or objetivos[id_obj]['id_usuario'] != usuario_logado:
+            print("Objetivo inválido.")
+            return
+    except:
+        print("ID inválido.")
         return
-    objetivo = usuario_logado.objetivos[idx_obj]
-    if not objetivo.metas:
-        print("Nenhuma meta neste objetivo.\n")
+    print(f"=== Metas do objetivo '{objetivos[id_obj]['titulo_objetivo']}' ===")
+    for id_meta in objetivos[id_obj]['metas']:
+        meta = metas[id_meta]
+        status = "Concluída" if meta['concluida'] else "Em progresso"
+        print(f"ID {id_meta} | {meta['descricao_meta']} - {meta['progresso_atual']}/{meta['meta_atingida']} {meta['unidade_medida']} - {status}")
+
+def atualizar_progresso_meta():
+    if usuario_logado is None:
+        print("Faça login primeiro.")
         return
-    for i, m in enumerate(objetivo.metas):
-        print(f"[{i}] {m.descricao} - {m.progresso_atual}/{m.meta_atingida}")
-    idx_meta = int(input("Selecione a meta: "))
-    if idx_meta < 0 or idx_meta >= len(objetivo.metas):
-        print("Meta inválida.\n")
+    listar_objetivos()
+    try:
+        id_obj = int(input("Digite o ID do objetivo da meta: "))
+        if id_obj not in objetivos or objetivos[id_obj]['id_usuario'] != usuario_logado:
+            print("Objetivo inválido.")
+            return
+    except:
+        print("ID inválido.")
         return
-    progresso = float(input("Adicionar progresso: "))
-    meta = objetivo.metas[idx_meta]
-    meta.progresso_atual += progresso
-    if meta.progresso_atual >= meta.meta_atingida:
-        meta.concluida = True
-        usuario_logado.pontos += 10
-        print("Meta concluída! +10 pontos.\n")
-        if usuario_logado.pontos >= usuario_logado.nivel * 50:
-            usuario_logado.nivel += 1
-            print(f"Parabéns! Você subiu para o nível {usuario_logado.nivel}!\n")
+    listar_metas()
+    try:
+        id_meta = int(input("Digite o ID da meta para atualizar: "))
+        if id_meta not in metas or metas[id_meta]['id_objetivo'] != id_obj:
+            print("Meta inválida.")
+            return
+    except:
+        print("ID inválido.")
+        return
+    try:
+        valor = float(input("Digite o valor a somar ao progresso atual: "))
+    except:
+        print("Valor inválido.")
+        return
+    meta = metas[id_meta]
+    meta['progresso_atual'] += valor
+    if meta['progresso_atual'] >= meta['meta_atingida']:
+        meta['concluida'] = True
+        meta['progresso_atual'] = meta['meta_atingida']
+        print("Meta concluída!")
     else:
-        print("Progresso atualizado.\n")
+        print(f"Progresso atualizado: {meta['progresso_atual']} / {meta['meta_atingida']} {meta['unidade_medida']}")
 
-def exibir_status():
-    if not usuario_logado:
-        print("Faça login primeiro.\n")
-        return
-    print(f"Usuário: {usuario_logado.nome}")
-    print(f"Pontos: {usuario_logado.pontos}")
-    print(f"Nível: {usuario_logado.nivel}\n")
+def logout():
+    global usuario_logado
+    usuario_logado = None
+    print("Deslogado com sucesso.")
 
 def menu():
     while True:
-        print("===== MENU =====")
-        print("1. Cadastrar usuário")
-        print("2. Login")
-        print("3. Criar objetivo")
-        print("4. Listar objetivos")
-        print("5. Criar meta")
-        print("6. Atualizar progresso da meta")
-        print("7. Exibir status do usuário")
-        print("0. Sair")
-        opcao = input("Escolha uma opção: ")
-
-        if opcao == "1":
-            cadastrar_usuario()
-        elif opcao == "2":
-            login()
-        elif opcao == "3":
-            criar_objetivo()
-        elif opcao == "4":
-            listar_objetivos()
-        elif opcao == "5":
-            criar_meta()
-        elif opcao == "6":
-            atualizar_progresso()
-        elif opcao == "7":
-            exibir_status()
-        elif opcao == "0":
-            print("Saindo...")
-            break
+        print("\n--- MENU ---")
+        if usuario_logado:
+            print(f"Logado como: {usuarios[usuario_logado]['nome']} ({usuario_logado})")
+            print("1 - Criar objetivo")
+            print("2 - Listar objetivos")
+            print("3 - Criar meta")
+            print("4 - Listar metas")
+            print("5 - Atualizar progresso da meta")
+            print("6 - Logout")
+            print("0 - Sair")
+            opc = input("Escolha: ")
+            if opc == '1':
+                criar_objetivo()
+            elif opc == '2':
+                listar_objetivos()
+            elif opc == '3':
+                criar_meta()
+            elif opc == '4':
+                listar_metas()
+            elif opc == '5':
+                atualizar_progresso_meta()
+            elif opc == '6':
+                logout()
+            elif opc == '0':
+                print("Saindo...")
+                break
+            else:
+                print("Opção inválida.")
         else:
-            print("Opção inválida.\n")
+            print("1 - Cadastrar")
+            print("2 - Login")
+            print("0 - Sair")
+            opc = input("Escolha: ")
+            if opc == '1':
+                cadastrar_usuario()
+            elif opc == '2':
+                login()
+            elif opc == '0':
+                print("Saindo...")
+                break
+            else:
+                print("Opção inválida.")
 
-menu()
+if __name__ == "__main__":
+    menu()
