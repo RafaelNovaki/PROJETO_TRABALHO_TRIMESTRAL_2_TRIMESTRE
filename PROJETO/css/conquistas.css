@@ -1,0 +1,80 @@
+/* css/conquistas.css */
+
+.conquistas-main {
+  max-width: 900px;
+  margin: 100px auto 60px;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: var(--cor-texto-claro);
+}
+
+body.dark-theme .conquistas-main {
+  color: var(--cor-texto-escuro);
+}
+
+h1 {
+  font-family: cursive, Arial, sans-serif;
+  color: var(--cor-primaria);
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.conquistas-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.conquista-card {
+  background-color: var(--cor-secundaria);
+  border-radius: 15px;
+  padding: 20px;
+  width: 280px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+  cursor: default;
+}
+
+.conquista-card:hover {
+  transform: scale(1.05);
+}
+
+.icone-conquista {
+  font-size: 3.5rem;
+  margin-right: 15px;
+}
+
+.conquista-info h3 {
+  margin: 0 0 5px 0;
+  font-family: cursive, Arial, sans-serif;
+}
+
+.conquista-info p {
+  margin: 0 0 8px 0;
+  font-size: 0.9rem;
+}
+
+.conquista-info small {
+  font-size: 0.8rem;
+  color: #eee;
+}
+
+body.dark-theme .conquista-card {
+  background-color: #494d7f;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.conquista-card.vazio {
+  background-color: #bbb;
+  color: #666;
+  font-style: italic;
+  cursor: not-allowed;
+}
+
+body.dark-theme .conquista-card.vazio {
+  background-color: #333;
+  color: #888;
+}

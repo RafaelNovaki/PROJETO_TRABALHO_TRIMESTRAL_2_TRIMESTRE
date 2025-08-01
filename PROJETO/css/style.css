@@ -1,0 +1,295 @@
+/* css/style.css */
+
+/* Paleta de cores */
+:root {
+    --cor-primaria: #7886C7;
+    --cor-secundaria: #7A73D1;
+    --cor-fundo-claro: #FFFCFB;
+    --cor-fundo-escuro: #09122C;
+    --cor-texto-claro: #222;
+    --cor-texto-escuro: #EEE;
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.light-theme {
+    background-color: var(--cor-fundo-claro);
+    color: var(--cor-texto-claro);
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-theme {
+    background-color: var(--cor-fundo-escuro);
+    color: var(--cor-texto-escuro);
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background-color: var(--cor-primaria);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-circle {
+    width: 40px;
+    height: 40px;
+    background-color: var(--cor-secundaria);
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #FFFACD;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: #FFFACD;
+    left: 0;
+    bottom: -4px;
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Main content */
+.main-content {
+    padding: 100px 20px 60px; /* top para navbar fixo */
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Hero section */
+.hero {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-family: cursive, Arial, sans-serif;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+.hero-buttons .btn {
+    padding: 12px 30px;
+    margin: 0 10px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s, transform 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: var(--cor-primaria);
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--cor-secundaria);
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--cor-primaria);
+    border: 2px solid var(--cor-primaria);
+}
+
+.btn-secondary:hover {
+    background-color: var(--cor-primaria);
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Stats section */
+.stats {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.stats h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.stats-grid {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.stat-item {
+    background-color: var(--cor-secundaria);
+    color: white;
+    padding: 25px 20px;
+    border-radius: 15px;
+    width: 180px;
+    user-select: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+}
+
+.stat-item:hover {
+    transform: translateY(-8px);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-family: cursive, Arial, sans-serif;
+}
+
+.stat-label {
+    font-size: 1.1rem;
+}
+
+/* About section */
+.about {
+    max-width: 700px;
+    margin: 0 auto 80px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Footer */
+.footer {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background-color: var(--cor-primaria);
+    color: white;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    user-select: none;
+}
+
+/* Modo escuro - ajustes extras */
+body.dark-theme .navbar {
+    background-color: var(--cor-secundaria);
+}
+
+body.dark-theme .stat-item {
+    background-color: var(--cor-primaria);
+}
+
+/* Scroll suave para a página */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Toast notifications */
+/* ... seu CSS original acima ... */
+
+/* Toast notifications */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    background-color: var(--cor-primaria); /* corrigido para usar variável correta */
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateX(100%);
+    animation: slideIn 0.5s forwards, fadeOut 0.5s 3.5s forwards;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+/* Dark mode support */
+body.dark-theme .toast {
+    background-color: var(--cor-secundaria); /* corrigido para usar variavel correta */
+}
+
+.logo-img {
+  width: 36px;   /* ou 40px, conforme preferir */
+  height: 36px;
+  object-fit: contain;
+  border-radius: 50%; /* opcional, pra manter bordas arredondadas */
+  display: block;
+}

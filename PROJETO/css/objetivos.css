@@ -1,0 +1,143 @@
+/* css/objetivos.css */
+
+.objetivos-main {
+    max-width: 900px;
+    margin: 100px auto 60px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: var(--cor-texto-claro);
+}
+
+body.dark-theme .objetivos-main {
+    color: var(--cor-texto-escuro);
+}
+
+.objetivos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.objetivos-header h1 {
+    font-family: cursive, Arial, sans-serif;
+    color: var(--cor-primaria);
+    font-size: 2.2rem;
+}
+
+.btn-primary {
+    background-color: var(--cor-primaria);
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-family: cursive, Arial, sans-serif;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--cor-secundaria);
+}
+
+.objetivos-lista ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.objetivos-lista li {
+    background-color: var(--cor-secundaria);
+    color: white;
+    margin-bottom: 15px;
+    padding: 15px 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(122,115,209,0.3);
+    transition: transform 0.3s ease;
+    cursor: default;
+    position: relative;
+}
+
+.objetivos-lista li:hover {
+    transform: translateY(-6px);
+}
+
+.objetivos-lista li h3 {
+    margin: 0 0 8px 0;
+    font-family: cursive, Arial, sans-serif;
+}
+
+.objetivos-lista li p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Modal */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right:0;
+    bottom: 0;
+    background-color: rgba(9,18,44,0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-content {
+    background-color: var(--cor-fundo-claro);
+    color: #222;
+    padding: 25px 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 420px;
+    box-shadow: 0 12px 30px rgba(120,134,199,0.5);
+    position: relative;
+}
+
+body.dark-theme .modal-content {
+    background-color: var(--cor-fundo-escuro);
+    color: #ddd;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--cor-primaria);
+    cursor: pointer;
+}
+
+form label {
+    display: block;
+    margin: 15px 0 5px 0;
+}
+
+form input[type="text"],
+form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1.5px solid var(--cor-secundaria);
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+    resize: vertical;
+}
+
+form textarea {
+    min-height: 80px;
+}
+
+form button {
+    margin-top: 20px;
+    width: 100%;
+}

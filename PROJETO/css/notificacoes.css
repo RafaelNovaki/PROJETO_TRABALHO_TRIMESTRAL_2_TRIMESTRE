@@ -1,0 +1,74 @@
+/* css/notificacoes.css */
+
+.notificacoes-main {
+  max-width: 900px;
+  margin: 100px auto 60px;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: var(--cor-texto-claro);
+}
+
+body.dark-theme .notificacoes-main {
+  color: var(--cor-texto-escuro);
+}
+
+h1 {
+  font-family: cursive, Arial, sans-serif;
+  color: var(--cor-primaria);
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.notificacoes-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.notificacao-card {
+  background-color: var(--cor-secundaria);
+  border-radius: 12px;
+  padding: 15px 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notificacao-card:hover {
+  background-color: #8b82d9;
+  color: #fff;
+}
+
+body.dark-theme .notificacao-card {
+  background-color: #494d7f;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+body.dark-theme .notificacao-card:hover {
+  background-color: #6a63c3;
+  color: #fff;
+}
+
+.notificacao-card.lida {
+  opacity: 0.6;
+}
+
+.notificacao-card p {
+  margin: 0;
+  font-size: 1rem;
+  flex-grow: 1;
+}
+
+.notificacao-card time {
+  font-size: 0.8rem;
+  color: #ddd;
+  white-space: nowrap;
+  margin-left: 15px;
+}
+
+body.dark-theme .notificacao-card time {
+  color: #bbb;
+}

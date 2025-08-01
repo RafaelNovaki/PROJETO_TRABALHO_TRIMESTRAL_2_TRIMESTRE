@@ -1,0 +1,89 @@
+/* css/forms.css */
+
+.form-main {
+    max-width: 400px;
+    margin: 100px auto 60px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+}
+
+body.dark-theme .form-main {
+    background: rgba(9, 18, 44, 0.85);
+    color: var(--cor-texto-escuro);
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: cursive, Arial, sans-serif;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 18px;
+    border: 1.8px solid var(--cor-secundaria);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    font-family: Arial, sans-serif;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: var(--cor-primaria);
+    outline: none;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s, transform 0.2s;
+    border: none;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: var(--cor-primaria);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--cor-secundaria);
+    transform: scale(1.05);
+}
+
+.form-footer-text {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+
+.form-footer-text a {
+    color: var(--cor-primaria);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.form-footer-text a:hover {
+    text-decoration: underline;
+}

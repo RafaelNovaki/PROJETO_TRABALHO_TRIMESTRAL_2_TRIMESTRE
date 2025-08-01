@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Planify</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body class="light-theme">
+
+    <!-- Navbar topo fixo -->
+    <header class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo" title="Habitica / Estugram">
+                <div class="logo-circle">
+                    <img src="img/logo.png" alt="Logo" class="logo-img" />
+                </div>
+            </a>
+            <nav class="nav-links">
+                <a href="dashboard.html" class="nav-link active">Dashboard</a>
+                <a href="objetivos.html" class="nav-link">Objetivos</a>
+                <a href="materiais.html" class="nav-link">Materiais</a>
+                <a href="tarefas.html" class="nav-link">Tarefas</a>
+                <a href="perfil.html" class="nav-link">Perfil</a>
+                <a href="conquistas.html" class="nav-link">Conquistas</a>
+                <a href="notificacoes.html" class="nav-link">Notificações</a>
+                <a href="historico.html" class="nav-link">Histórico</a>
+                <li><a href="#" onclick="logoutUser()">Sair</a></li>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <main class="main-content dashboard-main">
+        <section class="dashboard-welcome">
+            <h1>Bem-vindo, Usuário!</h1>
+            <p>Aqui está o resumo das suas atividades recentes:</p>
+        </section>
+
+        <section class="dashboard-summary-cards">
+            <div class="card">
+                <h3>Objetivos</h3>
+                <p class="card-number">12</p>
+                <p>Objetivos ativos</p>
+            </div>
+            <div class="card">
+                <h3>Metas</h3>
+                <p class="card-number">34</p>
+                <p>Metas definidas</p>
+            </div>
+            <div class="card">
+                <h3>Tarefas</h3>
+                <p class="card-number">7</p>
+                <p>Tarefas pendentes</p>
+            </div>
+            <div class="card">
+                <h3>Conquistas</h3>
+                <p class="card-number">5</p>
+                <p>Conquistas desbloqueadas</p>
+            </div>
+        </section>
+
+        <section class="dashboard-latest">
+            <h2>Últimas atividades</h2>
+            <ul class="activity-list">
+                <li>Você completou a meta "Estudar matemática" em 25/07/2025</li>
+                <li>Nova conquista desbloqueada: "Iniciante Produtivo"</li>
+                <li>Você adicionou um novo objetivo: "Aprender React"</li>
+                <li>Tarefa "Revisar inglês" foi concluída</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Rodapé fixo -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>© 2025 Habitica / Estugram. Todos os direitos reservados.</p>
+            <p>Contato: suporte@habitica-estugram.com</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
