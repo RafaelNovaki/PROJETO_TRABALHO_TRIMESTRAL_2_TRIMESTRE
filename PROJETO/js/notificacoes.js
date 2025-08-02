@@ -1,5 +1,3 @@
-// js/notificacoes.js
-
 document.addEventListener('DOMContentLoaded', () => {
   const notificacoes = document.querySelectorAll('.notificacao-card');
 
@@ -12,3 +10,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
