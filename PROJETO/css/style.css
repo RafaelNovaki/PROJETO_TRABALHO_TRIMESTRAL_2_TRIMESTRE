@@ -1,5 +1,4 @@
 /* css/style.css */
-
 /* Paleta de cores */
 :root {
     --cor-primaria: #7886C7;
@@ -10,7 +9,7 @@
     --cor-texto-escuro: #EEE;
 }
 
-/* Reset básico */
+/* Reset */
 * {
     margin: 0;
     padding: 0;
@@ -228,7 +227,7 @@ body.dark-theme {
     user-select: none;
 }
 
-/* Modo escuro - ajustes extras */
+/* Modo escuro - ajustes */
 body.dark-theme .navbar {
     background-color: var(--cor-secundaria);
 }
@@ -237,13 +236,11 @@ body.dark-theme .stat-item {
     background-color: var(--cor-primaria);
 }
 
-/* Scroll suave para a página */
+/* Scroll suave */
 html {
     scroll-behavior: smooth;
 }
 
-/* Toast notifications */
-/* ... seu CSS original acima ... */
 
 /* Toast notifications */
 .toast-container {
@@ -257,7 +254,7 @@ html {
 }
 
 .toast {
-    background-color: var(--cor-primaria); /* corrigido para usar variável correta */
+    background-color: var(--cor-primaria);
     color: white;
     padding: 10px 15px;
     border-radius: 8px;
@@ -281,15 +278,16 @@ html {
     }
 }
 
-/* Dark mode support */
+/* Dark mode */
 body.dark-theme .toast {
-    background-color: var(--cor-secundaria); /* corrigido para usar variavel correta */
+    background-color: var(--cor-secundaria);
 }
 
 .logo-img {
-  width: 36px;   /* ou 40px, conforme preferir */
+  width: 36px;
   height: 36px;
   object-fit: contain;
-  border-radius: 50%; /* opcional, pra manter bordas arredondadas */
+  border-radius: 50%;
   display: block;
 }
+
