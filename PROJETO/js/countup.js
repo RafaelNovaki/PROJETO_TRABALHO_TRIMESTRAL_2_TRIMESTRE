@@ -1,5 +1,3 @@
-// js/countup.js
-
 document.addEventListener("DOMContentLoaded", () => {
     const counters = document.querySelectorAll('.stat-number');
     counters.forEach(counter => {
@@ -18,3 +16,4 @@ document.addEventListener("DOMContentLoaded", () => {
         updateCount();
     });
 });
+
