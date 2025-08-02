@@ -1,5 +1,3 @@
-// js/tarefas.js
-
 document.addEventListener('DOMContentLoaded', () => {
     const btnAddTarefa = document.getElementById('btnAddTarefa');
     const modalTarefa = document.getElementById('modalTarefa');
@@ -11,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let tarefas = [];
     let editandoTarefaId = null;
 
-    // Abrir modal para nova tarefa
     btnAddTarefa.addEventListener('click', () => {
         modalTarefa.classList.remove('hidden');
         modalTarefaTitle.textContent = 'Adicionar Nova Tarefa';
@@ -19,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
         editandoTarefaId = null;
     });
 
-    // Fechar modal
     closeModalTarefa.addEventListener('click', () => {
         modalTarefa.classList.add('hidden');
     });
@@ -30,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Salvar tarefa (novo ou editar)
     formTarefa.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -45,13 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (editandoTarefaId) {
-            // Editar tarefa existente
             const index = tarefas.findIndex(t => t.id === editandoTarefaId);
             if (index !== -1) {
                 tarefas[index] = { id: editandoTarefaId, titulo, descricao, prioridade, status };
             }
         } else {
-            // Criar nova tarefa
             tarefas.push({
                 id: Date.now(),
                 titulo,
@@ -65,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
         modalTarefa.classList.add('hidden');
     });
 
-    // Renderizar lista de tarefas
     function renderTarefas() {
         listaTarefas.innerHTML = '';
 
@@ -101,18 +93,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             li.appendChild(infoDiv);
 
-            // Ações editar e excluir
             const actionsDiv = document.createElement('div');
             actionsDiv.classList.add('tarefa-actions');
 
-            // Editar botão
             const btnEditar = document.createElement('button');
             btnEditar.title = 'Editar';
             btnEditar.innerHTML = '✏️';
             btnEditar.addEventListener('click', () => abrirEdicao(tarefa.id));
             actionsDiv.appendChild(btnEditar);
 
-            // Excluir botão
             const btnExcluir = document.createElement('button');
             btnExcluir.title = 'Excluir';
             btnExcluir.innerHTML = '🗑️';
@@ -125,7 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Abrir modal para editar tarefa
     function abrirEdicao(id) {
         const tarefa = tarefas.find(t => t.id === id);
         if (!tarefa) return;
@@ -139,7 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
         editandoTarefaId = id;
     }
 
-    // Excluir tarefa
     function excluirTarefa(id) {
         if (confirm('Tem certeza que deseja excluir esta tarefa?')) {
             tarefas = tarefas.filter(t => t.id !== id);
@@ -147,10 +134,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Inicializa a lista (vazia)
     renderTarefas();
 });
 
 function completeTask(id) {
     showToast(`Tarefa ${id} concluída!`);
 }
+
