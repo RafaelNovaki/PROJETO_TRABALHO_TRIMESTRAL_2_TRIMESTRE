@@ -1,5 +1,3 @@
-// js/materiais.js
-
 document.addEventListener('DOMContentLoaded', () => {
     const btnAddCategoria = document.getElementById('btnAddCategoria');
     const modalCategoria = document.getElementById('modalCategoria');
@@ -16,13 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let categorias = [];
 
-    // Abrir modal categoria
     btnAddCategoria.addEventListener('click', () => {
         modalCategoria.classList.remove('hidden');
         formCategoria.reset();
     });
 
-    // Fechar modal categoria
     closeModalCategoria.addEventListener('click', () => {
         modalCategoria.classList.add('hidden');
     });
@@ -33,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Abrir modal material
     btnAddMaterial.addEventListener('click', () => {
         if (categorias.length === 0) {
             alert('Adicione ao menos uma categoria antes de adicionar materiais.');
@@ -44,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
         preencherSelectCategorias();
     });
 
-    // Fechar modal material
     closeModalMaterial.addEventListener('click', () => {
         modalMaterial.classList.add('hidden');
     });
@@ -55,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Adicionar categoria
     formCategoria.addEventListener('submit', (e) => {
         e.preventDefault();
         const nome = formCategoria.nomeCategoria.value.trim();
@@ -72,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
         modalCategoria.classList.add('hidden');
     });
 
-    // Adicionar material
     formMaterial.addEventListener('submit', (e) => {
         e.preventDefault();
         const categoriaId = categoriaSelect.value;
@@ -95,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
         modalMaterial.classList.add('hidden');
     });
 
-    // Renderiza categorias e seus materiais
     function renderCategorias() {
         listaCategorias.innerHTML = '';
         categorias.forEach(cat => {
@@ -124,7 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Preenche select do modal de material com categorias
     function preencherSelectCategorias() {
         categoriaSelect.innerHTML = '';
         categorias.forEach(cat => {
@@ -135,3 +125,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
