@@ -1,7 +1,4 @@
-// js/conquistas.js
-
 document.addEventListener('DOMContentLoaded', () => {
-  // Exemplo simples: futuramente pode carregar conquistas do backend
 
   const conquistaCards = document.querySelectorAll('.conquista-card');
 
@@ -13,3 +10,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
