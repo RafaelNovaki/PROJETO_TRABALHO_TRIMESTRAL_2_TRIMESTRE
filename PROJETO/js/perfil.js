@@ -1,11 +1,8 @@
-// js/perfil.js
-
 document.addEventListener('DOMContentLoaded', () => {
     const formPerfil = document.getElementById('formPerfil');
     const toggleTema = document.getElementById('toggleTema');
     const labelTema = document.getElementById('labelTema');
 
-    // Carregar dados fictícios do usuário - exemplo simples
     const usuario = {
         nome: "Usuário Teste",
         email: "teste@exemplo.com"
@@ -14,8 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     formPerfil.nomeUsuario.value = usuario.nome;
     formPerfil.emailUsuario.value = usuario.email;
 
-    // Modo claro/escuro (sincronizar com main.js)
-    // Carregar preferencia do localStorage
     const temaSalvo = localStorage.getItem('tema') || 'light';
     if (temaSalvo === 'dark') {
         document.body.classList.replace('light-theme', 'dark-theme');
@@ -54,10 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Aqui você poderia salvar as alterações via backend
         alert('Alterações salvas com sucesso! (simulado)');
         formPerfil.senhaAtual.value = '';
         formPerfil.novaSenha.value = '';
         formPerfil.confirmarSenha.value = '';
     });
 });
+
